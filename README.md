@@ -1,6 +1,6 @@
 # Webpack 5 test repo
 
-This repo shows performance degradation of rebuild for webpack5 comparing to webpack4
+This repo shows performance degradation of build in production for webpack5 comparing to webpack4
 
 source code is based on https://github.com/meskill/webpack5-performance-issue to simulate some real world example
 
