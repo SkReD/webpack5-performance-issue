@@ -1,0 +1,2 @@
+webpack 4: 6.135080679988861 seconds
+webpack 5: 7.854557122190793 seconds

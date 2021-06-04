@@ -23,7 +23,7 @@ const path = require('path');
  *
  */
 
-const MiniCssExtractPlugin = require(`./webpack${process.env.WEBPACK_VERSION}/node_modules/mini-css-extract-plugin`);
+const MiniCssExtractPlugin = require(`${process.cwd()}/node_modules/mini-css-extract-plugin`);
 
 
 
@@ -36,13 +36,13 @@ const MiniCssExtractPlugin = require(`./webpack${process.env.WEBPACK_VERSION}/no
  *
  */
 
-const TerserPlugin = require('terser-webpack-plugin');
+const TerserPlugin = require(`${process.cwd()}/node_modules/terser-webpack-plugin`);
 
 
 
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
 
   entry: '../src/index',
 
