@@ -23,7 +23,7 @@ const path = require('path');
  *
  */
 
-const MiniCssExtractPlugin = require(`${process.cwd()}/node_modules/mini-css-extract-plugin`);
+const MiniCssExtractPlugin = require(`mini-css-extract-plugin`);
 
 
 
@@ -36,15 +36,22 @@ const MiniCssExtractPlugin = require(`${process.cwd()}/node_modules/mini-css-ext
  *
  */
 
-const TerserPlugin = require(`${process.cwd()}/node_modules/terser-webpack-plugin`);
-
-
+const TerserPlugin = require(`terser-webpack-plugin`);
 
 
 module.exports = {
   mode: 'production',
 
-  entry: '../src/index',
+  cache: {
+    type: 'filesystem'
+  },
+
+  infrastructureLogging: {
+    level: 'info',
+    debug: /webpack\.cache.*/,
+  },
+
+  entry: `./${process.env.SRC_DIR}/index.js`,
 
   plugins: [
     new MiniCssExtractPlugin({ filename:'styles.[chunkhash].css' })
@@ -55,7 +62,6 @@ module.exports = {
   },
 
   module: {
-    unsafeCache: true,
     rules: [{
       test: /\.(js|jsx)$/,
       loader: 'babel-loader',
@@ -90,20 +96,8 @@ module.exports = {
   },
 
   optimization: {
-    minimizer: [new TerserPlugin()],
+    minimizer: [new TerserPlugin({
 
-    splitChunks: {
-      cacheGroups: {
-        vendors: {
-          priority: -10,
-          test: /[\\/]node_modules[\\/]/
-        }
-      },
-
-      chunks: 'async',
-      minChunks: 1,
-      minSize: 30000,
-      name: false
-    }
+    })],
   }
 }
